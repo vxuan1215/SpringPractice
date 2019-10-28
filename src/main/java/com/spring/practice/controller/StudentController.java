@@ -46,7 +46,7 @@ public class StudentController {
         }
     }
 
-    @GetMapping(value="/delete/student", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
+    @PostMapping(value="/delete/student", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
     public String deleteStudent(@RequestBody Student student)
     {
         if(studentMap.containsKey(student.getId())){
