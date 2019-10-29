@@ -29,27 +29,25 @@ public class StudentController {
 
     @GetMapping(value = "/get/all", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
     public List<Student> getAll(){
-
         return this.studentList;
     }
 
     @DeleteMapping (value = "/delete/all", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
     public String deleteStudents(){
         studentList.clear();
-        int retval = studentList.size();
-        if(retval==0){
-            return "true";
-        }else{
-            return "false";
-        }
+//        int retval = studentList.size();
+//        if(retval==0){
+//            return "true";
+//        }else{
+//            return "false";
+//        }
+        String flag = (studentList.size()==0)?"true":"false";
+        return flag;
     }
 
     @DeleteMapping(value="/delete/student/{id}", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<Void> deleteStudent(@PathVariable String id)
-    {
-        studentList.removeIf(p->p.getId().equals(id));
+    public ResponseEntity<Void> deleteStudent(@PathVariable String id) {
+        studentList.removeIf(student->student.getId().equals(id));
         return ResponseEntity.noContent().build();
-
-
     }
 }
